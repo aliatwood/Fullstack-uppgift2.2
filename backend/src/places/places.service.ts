@@ -18,4 +18,16 @@ export class PlacesService {
         this.places.push(place);
         return place;
     }
+
+    updatePlace(id: number, updatedPlace: Partial<Place>): Place | undefined {
+        const place = this.getPlaceById(id);
+
+        if (!place) {
+            return undefined;
+        }
+
+        Object.assign(place, updatedPlace);
+        place.id = id;
+        return place;
+    }
 }
