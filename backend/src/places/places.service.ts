@@ -7,4 +7,8 @@ export class PlacesService {
     getAllPlaces(): Place[] {
         return this.places;
 }
+    createPlace(place: Place): Place {
+        this.places.push(place);
+        return place;
+}
 }
