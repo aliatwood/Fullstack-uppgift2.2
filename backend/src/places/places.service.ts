@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Place } from './place/place';
 
 @Injectable()
@@ -9,34 +9,41 @@ export class PlacesService {
         return this.places;
     }
 
-    getPlaceById(id: number): Place | undefined {
-        return this.places.find(place => place.id === id);
-    }
+    getPlaceById(id: number): Place {
+        const place = this.places.find(place => place.id === id);
 
-    createPlace(place: Place): Place {
-        place.id = this.places.length + 1;
-        this.places.push(place);
+        if (!place) {
+            throw new NotFoundException(`Place with ID ${id} not found`);
+        }
+
         return place;
     }
 
-    updatePlace(id: number, updatedPlace: Partial<Place>): Place | undefined {
-        const place = this.getPlaceById(id);
+    createPlace(place: Omit<Place, 'id'>): Place {
+        const newPlace: Place = {
+            id: this.places.length + 1, ...place,
+        };
 
-        if (!place) {
-            return undefined;
-        }
+        this.places.push(newPlace);
+        return newPlace;
+    }
+
+    updatePlace(id: number, updatedPlace: Partial<Place>): Place{
+        const place = this.getPlaceById(id);
 
         Object.assign(place, updatedPlace);
         place.id = id;
         return place;
     }
 
-    deletePlace(id: number): Place | undefined {
+    deletePlace(id: number): Place {
+        
         const index = this.places.findIndex(place => place.id === id);
 
         if (index === -1) {
-            return undefined;
+            throw new NotFoundException(`Place with ID ${id} not found`);
         }
+
         const deletedPlace = this.places.splice(index, 1);
 
         return deletedPlace[0];
