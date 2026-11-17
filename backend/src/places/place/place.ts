@@ -1,6 +1,7 @@
 export class Place {
-  name: string;
-  realm: string;
-  population: number;
-  safe: boolean;
+    id: number;
+    name: string;
+    realm: string;
+    population: number;
+    safe: boolean;
 }

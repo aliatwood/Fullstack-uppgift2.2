@@ -1,5 +1,5 @@
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { PlacesService } from './places.service';
-import { Controller, Get, Post, Body } from '@nestjs/common';
 import { Place } from './place/place';
 
 @Controller('places')
@@ -9,6 +9,11 @@ export class PlacesController {
   @Get()
   getAllPlaces() {
     return this.placesService.getAllPlaces();
+  }
+
+  @Get(':id')
+  getPlaceById(@Param('id') id: string) {
+    return this.placesService.getPlaceById(Number(id));
   }
 
   @Post()
