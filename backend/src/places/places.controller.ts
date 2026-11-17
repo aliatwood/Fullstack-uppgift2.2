@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
 import { PlacesService } from './places.service';
 import { Place } from './place/place';
 
@@ -27,5 +27,10 @@ export class PlacesController {
         @Body() updatedPlace: Partial<Place>,
     ) {
         return this.placesService.updatePlace(Number(id), updatedPlace);
+    }
+
+    @Delete(':id')
+    deletePlace(@Param('id') id: string) {
+        return this.placesService.deletePlace(Number(id));
     }
 }

@@ -30,4 +30,15 @@ export class PlacesService {
         place.id = id;
         return place;
     }
+
+    deletePlace(id: number): Place | undefined {
+        const index = this.places.findIndex(place => place.id === id);
+
+        if (index === -1) {
+            return undefined;
+        }
+        const deletedPlace = this.places.splice(index, 1);
+
+        return deletedPlace[0];
+    }
 }
