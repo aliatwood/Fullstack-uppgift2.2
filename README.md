@@ -1,10 +1,10 @@
 # Middle-earth Explorer API
 
-En REST-webbtjänst byggd med NestJS och PostgreSQL för att hantera platser i Midgård från Sagan om ringen.
+En REST-webbtjänst byggd med NestJS och PostgreSQL för att hantera platser i Middle earth från Sagan om ringen.
 
 ## Publikt API
 
-API:et är driftsatt på Render och kan nås här:
+API:et körs på Render och kan nås här:
 
 https://middle-earth-explorer-api.onrender.com
 
@@ -21,7 +21,7 @@ https://middle-earth-explorer-api.onrender.com
 
 ## Funktioner
 
-API:et har full CRUD-funktionalitet för att hantera platser i Midgård.
+API:et har fullt CRUD-stöd för platser i Middle-earth.
 
 Varje plats innehåller följande fält:
 
@@ -51,7 +51,7 @@ Alla endpoints använder basadressen:
 
 ## Exempel på JSON-data
 
-Vid skapande av en ny plats med POST skickas följande JSON:
+Vid skapande av en ny plats med POST skickas denna JSON:
 
 ```json
 {
@@ -96,9 +96,7 @@ DB_PASSWORD=ditt_lösenord
 DB_DATABASE=middle_earth_explorer
 ```
 
-Ändra värdena så att de stämmer överens med din egen databasinställning.
-
-**Observera:** `.env`-filen innehåller känsliga uppgifter och ska inte publiceras på GitHub.
+Anpassa värdena efter din databas.
 
 ### 5. Starta servern
 
@@ -112,9 +110,9 @@ Servern startar på:
 
 ## Testning
 
-API:et kan testas med exempelvis Postman genom att skicka HTTP-anrop till endpoints ovan.
+API:et kan testas med Postman genom att skicka HTTP-anrop till endpoints ovan.
 
-Testa att:
+Ni kan bland annat testa att:
 
 - Hämta alla platser med GET.
 - Hämta en specifik plats med GET och ett ID.
@@ -130,7 +128,7 @@ API:et använder DTO:er och `class-validator` för att kontrollera inkommande da
 
 Om felaktiga datatyper skickas returneras ett felmeddelande med statuskod 400 (Bad Request).
 
-Om en plats med angivet ID inte finns returneras ett felmeddelande med statuskod 404 (Not Found).
+Om en plats med skriven ID inte finns returneras ett felmeddelande med statuskod 404 (Not Found).
 
 ## Databas
 
@@ -138,12 +136,6 @@ Projektet använder PostgreSQL som databasserver och TypeORM för att kommunicer
 
 Tabellen skapas automatiskt av TypeORM när servern startas med den nuvarande utvecklingskonfigurationen.
 
-## Driftsättning
+## Hosting
 
-API:et är driftsatt på Render och använder en PostgreSQL-databas.
-
-Vid inaktivitet kan den kostnadsfria Render-tjänsten gå ner i viloläge och behöva lite tid för att starta igen.
-
-## Utvecklat som
-
-Laboration 2.2 – REST-webbtjänst med backend-ramverk.
+API:et körs på Render och använder en PostgreSQL-databas.
