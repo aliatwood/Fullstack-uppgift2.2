@@ -15,7 +15,7 @@ export class PlacesService {
         return this.placesRepository.find();
     }
 
-    // Hämtar en plats med ID, eller ger fel om den ej finns
+    // Hämtar en plats med ID eller ger fel om den ej finns
     async getPlaceById(id: number): Promise<PlaceEntity> {
         const place = await this.placesRepository.findOneBy({ id });
 
