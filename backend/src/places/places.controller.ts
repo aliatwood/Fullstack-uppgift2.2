@@ -18,20 +18,20 @@ export class PlacesController {
   }
 
   @Post()
-    createPlace(@Body() place: CreatePlaceDto) {
-        return this.placesService.createPlace(place);
-    }
+  createPlace(@Body() place: CreatePlaceDto) {
+    return this.placesService.createPlace(place);
+  }
 
-    @Put(':id')
-    updatePlace(
-        @Param('id') id: string,
-        @Body() updatedPlace: UpdatePlaceDto,
-    ) {
-        return this.placesService.updatePlace(Number(id), updatedPlace);
-    }
+  @Put(':id')
+  updatePlace(
+    @Param('id') id: string,
+    @Body() updatedPlace: UpdatePlaceDto,
+  ) {
+    return this.placesService.updatePlace(Number(id), updatedPlace);
+  }
 
-    @Delete(':id')
-    deletePlace(@Param('id') id: string) {
-        return this.placesService.deletePlace(Number(id));
-    }
+  @Delete(':id')
+  deletePlace(@Param('id') id: string) {
+    return this.placesService.deletePlace(Number(id));
+  }
 }

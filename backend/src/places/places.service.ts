@@ -1,16 +1,21 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Place } from './place/place';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { PlaceEntity } from './place.entity/place.entity';
 
 @Injectable()
 export class PlacesService {
-    private places: Place[] = [];
+    constructor(
+        @InjectRepository(PlaceEntity)
+        private placesRepository: Repository<PlaceEntity>,
+    ) {}
 
-    getAllPlaces(): Place[] {
-        return this.places;
+    async getAllPlaces(): Promise<PlaceEntity[]> {
+        return this.placesRepository.find();
     }
 
-    getPlaceById(id: number): Place {
-        const place = this.places.find(place => place.id === id);
+    async getPlaceById(id: number): Promise<PlaceEntity> {
+        const place = await this.placesRepository.findOneBy({ id });
 
         if (!place) {
             throw new NotFoundException(`Place with ID ${id} not found`);
@@ -19,33 +24,28 @@ export class PlacesService {
         return place;
     }
 
-    createPlace(place: Omit<Place, 'id'>): Place {
-        const newPlace: Place = {
-            id: this.places.length + 1, ...place,
-        };
-
-        this.places.push(newPlace);
-        return newPlace;
+    async createPlace(place: Omit<PlaceEntity, 'id'>): Promise<PlaceEntity> {
+        const newPlace = this.placesRepository.create(place);
+        return this.placesRepository.save(newPlace);
     }
 
-    updatePlace(id: number, updatedPlace: Partial<Place>): Place{
-        const place = this.getPlaceById(id);
+    async updatePlace(
+        id: number,
+        updatedPlace: Partial<PlaceEntity>,
+    ): Promise<PlaceEntity> {
+        const place = await this.getPlaceById(id);
 
         Object.assign(place, updatedPlace);
         place.id = id;
-        return place;
+
+        return this.placesRepository.save(place);
     }
 
-    deletePlace(id: number): Place {
-        
-        const index = this.places.findIndex(place => place.id === id);
+    async deletePlace(id: number): Promise<PlaceEntity> {
+        const place = await this.getPlaceById(id);
 
-        if (index === -1) {
-            throw new NotFoundException(`Place with ID ${id} not found`);
-        }
+        await this.placesRepository.remove(place);
 
-        const deletedPlace = this.places.splice(index, 1);
-
-        return deletedPlace[0];
+        return place;
     }
 }
