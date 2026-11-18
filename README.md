@@ -8,6 +8,10 @@ API:et är driftsatt på Render och kan nås här:
 
 https://middle-earth-explorer-api.onrender.com
 
+För att hämta alla platser, använd:
+
+https://middle-earth-explorer-api.onrender.com/places
+
 ## Tekniker
 
 - Node.js
