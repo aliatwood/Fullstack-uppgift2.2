@@ -8,6 +8,10 @@ API:et körs på Render och kan nås här:
 
 https://middle-earth-explorer-api.onrender.com
 
+För att hämta alla platser, använd:
+
+https://middle-earth-explorer-api.onrender.com/places
+
 ## Tekniker
 
 - Node.js
@@ -138,4 +142,14 @@ Tabellen skapas automatiskt av TypeORM när servern startas med den nuvarande ut
 
 ## Hosting
 
+<<<<<<< HEAD
 API:et körs på Render och använder en PostgreSQL-databas.
+=======
+API:et är driftsatt på Render och använder en PostgreSQL-databas.
+
+Vid inaktivitet kan den kostnadsfria Render-tjänsten gå ner i viloläge och behöva lite tid för att starta igen.
+
+## Utvecklat som
+
+Laboration 2.2 – REST-webbtjänst med backend-ramverk.
+>>>>>>> f03fc63e22fbf25b10d19c8df40c0b957868419a
