@@ -7,21 +7,25 @@ import { UpdatePlaceDto } from './dto/update-place.dto/update-place.dto';
 export class PlacesController {
   constructor(private readonly placesService: PlacesService) {}
 
+  // Hämtar alla platser
   @Get()
   getAllPlaces() {
     return this.placesService.getAllPlaces();
   }
 
+  // Hämtar en plats med hjälp av ID
   @Get(':id')
   getPlaceById(@Param('id') id: string) {
     return this.placesService.getPlaceById(Number(id));
   }
 
+  // Skapar en ny plats
   @Post()
   createPlace(@Body() place: CreatePlaceDto) {
     return this.placesService.createPlace(place);
   }
 
+  // Uppdaterar en befintlig plats
   @Put(':id')
   updatePlace(
     @Param('id') id: string,
@@ -30,6 +34,7 @@ export class PlacesController {
     return this.placesService.updatePlace(Number(id), updatedPlace);
   }
 
+  // Raderar en plats
   @Delete(':id')
   deletePlace(@Param('id') id: string) {
     return this.placesService.deletePlace(Number(id));

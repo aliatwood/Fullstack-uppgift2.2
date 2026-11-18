@@ -2,9 +2,11 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 
+// Startar servern
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Checkar data som skickas till API:et
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -12,6 +14,7 @@ async function bootstrap() {
     }),
   );
 
+  // Startar servern på port 3000
   await app.listen(process.env.PORT ?? 3000);
 }
 

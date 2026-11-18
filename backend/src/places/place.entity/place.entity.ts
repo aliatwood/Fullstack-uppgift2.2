@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
+// Representerar en plats i databasen
 @Entity()
 export class PlaceEntity {
   @PrimaryGeneratedColumn()

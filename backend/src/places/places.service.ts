@@ -10,10 +10,12 @@ export class PlacesService {
         private placesRepository: Repository<PlaceEntity>,
     ) {}
 
+    // Hämtar alla platser från databasen
     async getAllPlaces(): Promise<PlaceEntity[]> {
         return this.placesRepository.find();
     }
 
+    // Hämtar en plats med ID, eller ger fel om den ej finns
     async getPlaceById(id: number): Promise<PlaceEntity> {
         const place = await this.placesRepository.findOneBy({ id });
 
@@ -24,11 +26,13 @@ export class PlacesService {
         return place;
     }
 
+    // Skapar och sparar en ny plats
     async createPlace(place: Omit<PlaceEntity, 'id'>): Promise<PlaceEntity> {
         const newPlace = this.placesRepository.create(place);
         return this.placesRepository.save(newPlace);
     }
 
+    // Uppdaterar en befintlig plats
     async updatePlace(
         id: number,
         updatedPlace: Partial<PlaceEntity>,
@@ -41,6 +45,7 @@ export class PlacesService {
         return this.placesRepository.save(place);
     }
 
+    // Tar bort en plats från databasen
     async deletePlace(id: number): Promise<PlaceEntity> {
         const place = await this.getPlaceById(id);
 

@@ -5,10 +5,12 @@ import { PlacesModule } from './places/places.module';
 
 @Module({
   imports: [
+    // Hämtar inställningar från .env-filen
     ConfigModule.forRoot({
       isGlobal: true,
     }),
 
+    // Kopplar ihop appen med PostgreSQL
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -24,6 +26,7 @@ import { PlacesModule } from './places/places.module';
       }),
     }),
 
+    // Lägger till Places-modulen
     PlacesModule,
   ],
 })
