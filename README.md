@@ -2,6 +2,12 @@
 
 En REST-webbtjänst byggd med NestJS och PostgreSQL för att hantera platser i Midgård från Sagan om ringen.
 
+## Publikt API
+
+API:et är driftsatt på Render och kan nås här:
+
+https://middle-earth-explorer-api.onrender.com
+
 ## Tekniker
 
 - Node.js
@@ -11,6 +17,7 @@ En REST-webbtjänst byggd med NestJS och PostgreSQL för att hantera platser i M
 - TypeORM
 - class-validator
 - Postman för testning
+- Render för driftsättning
 
 ## Funktioner
 
@@ -30,7 +37,9 @@ Varje plats innehåller följande fält:
 
 Alla endpoints använder basadressen:
 
-`http://localhost:3000`
+**Publik adress:** `https://middle-earth-explorer-api.onrender.com`
+
+**Lokal adress:** `http://localhost:3000`
 
 | HTTP-metod | Endpoint | Beskrivning |
 |---|---|---|
@@ -60,7 +69,7 @@ Databasen skapar automatiskt ett unikt ID för varje ny plats.
 ### 1. Klona projektet
 
 ```bash
-git clone https://github.com/aliatwood/Fullstack-uppgift2.2
+git clone https://github.com/aliatwood/Fullstack-uppgift2.2.git
 ```
 
 ### 2. Gå till backend-mappen
@@ -106,6 +115,7 @@ Servern startar på:
 API:et kan testas med exempelvis Postman genom att skicka HTTP-anrop till endpoints ovan.
 
 Testa att:
+
 - Hämta alla platser med GET.
 - Hämta en specifik plats med GET och ett ID.
 - Skapa en ny plats med POST.
@@ -120,13 +130,19 @@ API:et använder DTO:er och `class-validator` för att kontrollera inkommande da
 
 Om felaktiga datatyper skickas returneras ett felmeddelande med statuskod 400 (Bad Request).
 
-Om en plats med angivet ID inte finns returneras statuskod 404 (Not Found).
+Om en plats med angivet ID inte finns returneras ett felmeddelande med statuskod 404 (Not Found).
 
 ## Databas
 
 Projektet använder PostgreSQL som databasserver och TypeORM för att kommunicera med databasen.
 
 Tabellen skapas automatiskt av TypeORM när servern startas med den nuvarande utvecklingskonfigurationen.
+
+## Driftsättning
+
+API:et är driftsatt på Render och använder en PostgreSQL-databas.
+
+Vid inaktivitet kan den kostnadsfria Render-tjänsten gå ner i viloläge och behöva lite tid för att starta igen.
 
 ## Utvecklat som
 
