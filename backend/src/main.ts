@@ -6,6 +6,9 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Tillåter frontend att kommunicera med API:et (CORS)
+  app.enableCors();
+
   // Checkar data som skickas till API:et
   app.useGlobalPipes(
     new ValidationPipe({
